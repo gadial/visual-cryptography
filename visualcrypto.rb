@@ -1,17 +1,12 @@
 require 'rubygems'
 require 'RMagick'
 require 'optparse'
-require 'DoubleArray'
+require './DoubleArray'
 
 class Integer
-	def to_bin(minimum_length=0)
-		#outputs array of 1 and 0 according to the binary representation
-		temp=self.to_s(2).split("").collect{|x| x.to_i}
-		while temp.length<minimum_length
-			temp.unshift(0)
-		end
-		return temp
-	end
+  def to_bin(minimum_length=0)
+    self.to_s(2).rjust(4,"0").split("").collect{|x| x.to_i}
+  end
 end
 
 
@@ -28,15 +23,15 @@ end
 
 def name_to_number(name)
 	case name
-		when "white": return 1
-		when "black": return 0
+		when "white" then return 1
+		when "black" then return 0
 	end
 end
 
 def number_to_name(number)
 	case number
-		when 1: return "white"
-		when 0: return "black"
+		when 1 then return "white"
+		when 0 then return "black"
 	end
 end
 
@@ -168,5 +163,6 @@ end
 #   test.run.print_results unless options[:quiet]
 # end
 # multiple_image_crypto("homer.gif","marge.png", "bart.png")
-simple_crypto("homer.gif")
+# simple_crypto("homer.gif")
+
 
